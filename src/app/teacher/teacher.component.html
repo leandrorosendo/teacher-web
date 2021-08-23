@@ -1,0 +1,105 @@
+<app-notifications [message]="message"></app-notifications>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title ">Teacher</h4>
+            </div>
+            <div class="card-body">
+                <form id="add-form" (ngSubmit)="f.form.valid && saveTeacher(f)" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" id="name" name="name" #name="ngModel" required
+                                    class="form-control" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }"
+                                    maxlength="255" [(ngModel)]="teacher.name">
+                                <div *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                                    <div *ngIf="name?.errors?.required">The name field is required</div>
+                                    <div *ngIf="name?.errors?.maxlength">The cpf must be 255 digits</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                <label>CPF</label>
+                                <input type="text" id="cpf" name="cpf" #cpf="ngModel" required
+                                    class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cpf.invalid }"
+                                    maxlength="100" [(ngModel)]="teacher.cpf">
+                                <div *ngIf="f.submitted && cpf.invalid" class="invalid-feedback">
+                                    <div *ngIf="cpf?.errors?.required">The cpf field is required</div>
+                                    <div *ngIf="cpf?.errors?.maxlength">The cpf must be 11 digits</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 pl-1">
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="text" id="email" name="email" #email="ngModel" required
+                                    class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+                                    maxlength="100" [(ngModel)]="teacher.email">
+                                <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                                    <div *ngIf="email?.errors?.required">The email field is required</div>
+                                    <div *ngIf="email?.errors?.maxlength">The email must be 255 digits</div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3  pl-1">
+                            <div class="form-group">
+                                <label>Birth Date</label>
+                                <input type="date" [(ngModel)]="teacher.birth" id="birth" name="birth"
+                                    #birth="ngModel" required class="form-control"
+                                    [ngClass]="{ 'is-invalid': f.submitted && birth.invalid }">
+                                <div *ngIf="f.submitted && birth.invalid" class="invalid-feedback">
+                                    <div *ngIf="birth?.errors?.required">The birth field is required</div>
+                                </div>
+                            </div>
+                        </div>
+                  
+                    </div> 
+                    <button type="submit" class="btn btn-primary btn-add-teacher pull-right">Save</button>
+                    <button type="button" class="btn btn-secondary btn-add-teacher pull-right" (click)="cleanForm(f)">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+            <div class="card-header ">
+                <h4 class="card-title ">Teachers</h4>
+            </div>
+            <div class="card-body table-full-width table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Birth date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let teacher of teachers">
+                            <td>{{teacher.name}}</td>
+                            <td>{{teacher.cpf}} </td>
+                            <td>{{teacher.email}}</td>
+                            <td>{{teacher.birth}}</td>
+                            <td class="td-actions text-right">
+                                <a rel="tooltip" title="Edit" class="btn btn-info btn-simple btn-xs action-teacher" (click)="editTeacher(teacher)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a rel="tooltip" title="Delete"  class="btn btn-danger btn-simple btn-xs action-teacher" (click)="deleteTeacher(teacher)">
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

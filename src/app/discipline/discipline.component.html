@@ -1,0 +1,62 @@
+<app-notifications [message]="message"></app-notifications>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title ">Discipline</h4>
+            </div>
+            <div class="card-body">
+                <form id="add-form" (ngSubmit)="f.form.valid && saveDiscipline(f)" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <label>Discipline</label>
+                                <input type="text" id="discipline" name="discipline" #discipline2="ngModel" required
+                                    class="form-control" [ngClass]="{ 'is-invalid': f.submitted && discipline2.invalid }"
+                                    maxlength="255" [(ngModel)]="discipline.discipline">
+                                <div *ngIf="f.submitted && discipline2.invalid" class="invalid-feedback">
+                                    <div *ngIf="discipline2?.errors?.required">The name field is required</div>
+                                    <div *ngIf="discipline2?.errors?.maxlength">The cpf must be 255 digits</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <button type="submit" class="btn btn-primary btn-add-discipline pull-right">Save</button>
+                    <button type="button" class="btn btn-secondary btn-add-discipline pull-right" (click)="cleanForm(f)">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+            <div class="card-header ">
+                <h4 class="card-title ">Disciplines</h4>
+            </div>
+            <div class="card-body table-full-width table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Discipline</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let discipline of disciplines">
+                            <td>{{discipline.discipline}}</td>
+                            <td class="td-actions text-right">
+                                <a rel="tooltip" title="Edit" class="btn btn-info btn-simple btn-xs action-discipline" (click)="editDiscipline(discipline)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a rel="tooltip" title="Delete"  class="btn btn-danger btn-simple btn-xs action-discipline" (click)="deleteDiscipline(discipline)">
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

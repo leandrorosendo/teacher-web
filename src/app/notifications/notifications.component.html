@@ -1,0 +1,10 @@
+<div class="alert alert-{{class}}">
+    <div *ngIf="erratrib === false">
+        <strong>{{text}}</strong>
+    </div>
+    <div *ngIf="erratrib === true">
+        <li *ngFor="let mensagem of message?.mensagem ">
+            {{mensagem}}
+        </li>
+    </div>
+</div>

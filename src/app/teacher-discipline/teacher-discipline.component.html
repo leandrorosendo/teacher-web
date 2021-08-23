@@ -1,0 +1,84 @@
+<app-notifications [message]="message"></app-notifications>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title ">Teacher Discipline</h4>
+            </div>
+            <div class="card-body">
+                <form id="add-form" (ngSubmit)="f.form.valid && saveTeacherDiscipline(f)" #f="ngForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-3 pr-1">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>Teacher</label>
+                                    <select type="number" id="teacher_id" name="teacher_id" #teacher_id="ngModel" [(ngModel)]="teacherDiscipline.teacher_id"  class="form-control" 
+                                    [ngClass]="{ 'is-invalid': f.submitted && teacher_id.invalid }" required>
+                                        <option *ngFor="let teacher of teachers" [value]="teacher.id">
+                                          {{ teacher.name }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="f.submitted && teacher_id.invalid" class="invalid-feedback">
+                                        <div *ngIf="teacher_id?.errors?.required">The teacher field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 px-1">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label>Discipline</label>
+                                    <select type="number" id="discipline_id" name="discipline_id" #discipline_id="ngModel" [(ngModel)]="teacherDiscipline.discipline_id"  class="form-control" 
+                                    [ngClass]="{ 'is-invalid': f.submitted && discipline_id.invalid }" required>
+                                        <option *ngFor="let discipline of disciplines" [value]="discipline.id">
+                                          {{ discipline.discipline }}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="f.submitted && discipline_id.invalid" class="invalid-feedback">
+                                        <div *ngIf="discipline_id?.errors?.required">The discipline field is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <button type="submit" class="btn btn-primary btn-add-teacher-discipline pull-right">Save</button>
+                    <button type="button" class="btn btn-secondary btn-add-teacher-discipline pull-right" (click)="cleanForm(f)">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover">
+            <div class="card-header ">
+                <h4 class="card-title ">Teachers</h4>
+            </div>
+            <div class="card-body table-full-width table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Teacher</th>
+                            <th>Discipline</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let teacherDiscipline of teacherDisciplines">
+                            <td>{{teacherDiscipline.teachers.name}}</td>
+                            <td>{{teacherDiscipline.disciplines.discipline}} </td>
+                            <td class="td-actions text-right">
+                                <a rel="tooltip" title="Edit" class="btn btn-info btn-simple btn-xs action-teacher-discipline" (click)="editTeacherDiscipline(teacherDiscipline)">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a rel="tooltip" title="Delete"  class="btn btn-danger btn-simple btn-xs action-teacher-discipline" (click)="deleteTeacherDiscipline(teacherDiscipline)">
+                                    <i class="fa fa-power-off"></i>
+                                </a>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

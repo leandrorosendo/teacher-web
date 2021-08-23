@@ -1,0 +1,27 @@
+<div class="wrapper">
+  <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+    <!-- End  Sidebar -->
+  </div>
+  <div class="main-panel">
+    <!-- Navbar -->
+    <app-navbar></app-navbar>
+    <!-- End Navbar -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="section">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <app-footer></app-footer>
+    <!-- End Footer -->
+  </div>
+</div>

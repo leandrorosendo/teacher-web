@@ -1,0 +1,29 @@
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="javascript:;" class="simple-text">
+         School 2021
+        </a>
+    </div>
+    <ul class="nav">
+
+        <li [ngClass]="step == 'step1' ? 'nav-item active' : 'nav-item'" (click)="editClass('step1')">
+            <a class="nav-link" [routerLink]="['/teacher']" >
+                <i class="nc-icon nc-icon nc-circle-09"></i>
+                <p>Teacher</p>
+            </a>
+        </li>
+        <li [ngClass]="step == 'step2' ? 'nav-item active' : 'nav-item'" (click)="editClass('step2')">
+            <a class="nav-link" [routerLink]="['/teacher-discipline']" >
+                <i class="nc-icon nc-icon nc-badge"></i>
+                <p>Teacher x Discipline</p>
+            </a>
+        </li>
+        <li  [ngClass]="step == 'step3' ? 'nav-item active' : 'nav-item'" (click)="editClass('step3')">
+            <a class="nav-link" [routerLink]="['/discipline']" >
+                <i class="nc-icon nc-icon nc-ruler-pencil"></i>
+                <p>Discipline</p>
+            </a>
+        </li>
+   
+    </ul>
+</div>

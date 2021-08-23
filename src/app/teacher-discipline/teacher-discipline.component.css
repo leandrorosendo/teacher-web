@@ -1,0 +1,12 @@
+.completed {
+    text-decoration: line-through;
+    color: crimson;
+}
+  
+.btn-add-teacher-discipline {
+    margin-right: 10px;
+}
+
+.action-teacher-discipline {
+    margin-right: 10px;
+}
