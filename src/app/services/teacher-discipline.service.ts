@@ -3,13 +3,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { TeacherDisciplines } from '../models/teacher-disciplines';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeacherDisciplineService {
 
-  private url = 'http://localhost:8000/api/teachers/disciplines';
+  private url = environment.apiUrl+'/api/teachers/disciplines';
 
   // injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
